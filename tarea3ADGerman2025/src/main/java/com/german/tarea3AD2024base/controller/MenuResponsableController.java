@@ -44,5 +44,10 @@ public class MenuResponsableController implements Initializable {
 	private void abrirSellarAlojarse() {
 		stageManager.showModal(FxmlView.SELLAR_ALOJARSE);
 	}
+	
+	@FXML
+	private void abirExportarParadas() {
+		stageManager.showModal(FxmlView.EXPORTAR_ALOJARSE);
+	}
 
 }

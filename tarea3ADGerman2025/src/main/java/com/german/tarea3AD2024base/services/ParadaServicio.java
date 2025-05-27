@@ -62,5 +62,13 @@ public class ParadaServicio {
 	public Parada encontrarParadaPorUsuario(Long usuario_id) {
 		return paradaRepositorio.findByUsuario_id(usuario_id);
 	}
+	
+	public List<Parada> encontrarParadasPorPeregrino(Long idPeregrino){
+		return paradaRepositorio.findParadasByPeregrinoId(idPeregrino);
+	}
+	
+	public String encontrarNombreParadaPorId(Long idParada) {
+		return paradaRepositorio.findNombreParadaById(idParada);
+	}
 
 }

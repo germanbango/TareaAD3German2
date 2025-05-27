@@ -51,9 +51,8 @@ public class LoginController implements Initializable {
 
 	@Lazy
 	@Autowired
-	private StageManager stageManager;
+	private StageManager stageManager; 
 
-	private User user = new User();
 	
 	@FXML
 	private void registrarPeregrino(){

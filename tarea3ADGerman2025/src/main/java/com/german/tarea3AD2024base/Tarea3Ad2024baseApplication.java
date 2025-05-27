@@ -5,6 +5,7 @@ import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.context.ConfigurableApplicationContext;
 
 import com.german.tarea3AD2024base.config.StageManager;
+import com.german.tarea3AD2024base.modelo.Peregrino;
 import com.german.tarea3AD2024base.view.FxmlView;
 
 import javafx.application.Application;
@@ -22,6 +23,7 @@ public class Tarea3Ad2024baseApplication extends Application {
 	}
 
 	public static void main(final String[] args) {
+		System.setProperty("java.awt.headless", "false");
 		Application.launch(args);
 	}
 

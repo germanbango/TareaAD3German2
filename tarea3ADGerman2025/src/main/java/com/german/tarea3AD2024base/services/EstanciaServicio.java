@@ -41,4 +41,12 @@ public class EstanciaServicio {
 	public List<Estancia> encontrarTodos() {
 		return estanciaRepositorio.findAll();
 	}
+	
+	public List<Estancia> estanciasPorPeregrino(Long idPeregrino){
+		return estanciaRepositorio.findByPeregrinoIdOrderByFechaAsc(idPeregrino);
+	}
+	
+	public List<Estancia> estanciasPorParada(Long idParada){
+		return estanciaRepositorio.findByParadaId(idParada);
+	}
 }

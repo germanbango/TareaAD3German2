@@ -1,21 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.layout.VBox?>
 
-
-<VBox alignment="BOTTOM_RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" fx:controller="com.german.tarea3AD2024base.controller.MenuPeregrinoController" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Button mnemonicParsing="false" prefHeight="28.0" prefWidth="80.0" text="Button">
-         <VBox.margin>
-            <Insets right="25.0" />
-         </VBox.margin>
-      </Button>
-      <VBox alignment="CENTER" prefHeight="357.0" prefWidth="600.0">
-         <children>
-            <Button mnemonicParsing="false" prefHeight="29.0" prefWidth="130.0" text="Exportar Carnet a xml" />
-         </children>
-      </VBox>
+      <MenuBar fx:id="menubarPeregrino">
+        <menus>
+          <Menu fx:id="menuGestion" mnemonicParsing="false" text="Gestion">
+            <items>
+              <MenuItem fx:id="menuitemExportarCarnet" onAction="#generarInformeYXml" mnemonicParsing="false" text=" Exportar carnet" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Ayuda">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Ayuda" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Salir">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Cerrar Sesion" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
    </children>
 </VBox>

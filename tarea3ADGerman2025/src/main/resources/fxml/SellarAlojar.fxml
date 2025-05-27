@@ -82,7 +82,7 @@
             </VBox>
             <VBox alignment="TOP_RIGHT" prefHeight="95.0" prefWidth="530.0">
                <children>
-                  <Button mnemonicParsing="false" prefHeight="37.0" prefWidth="74.0" text="Salir">
+                  <Button mnemonicParsing="false" prefHeight="37.0" prefWidth="74.0"  onAction="#Cerrar" text="Salir">
                      <VBox.margin>
                         <Insets right="30.0" top="15.0" />
                      </VBox.margin>

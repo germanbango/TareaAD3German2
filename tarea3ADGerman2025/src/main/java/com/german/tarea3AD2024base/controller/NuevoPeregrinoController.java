@@ -120,6 +120,7 @@ public class NuevoPeregrinoController implements Initializable {
 		peregrino.setNacionalidad(nacionalidad);
 		peregrino.setUsuario(usuario);
 		peregrinoServicio.guardar(peregrino);
+		peregrino = peregrinoServicio.encontrarPorNombre(nombre);
 		carnet.setDistancia(0.0);
 		carnet.setFechaexp(LocalDate.now());
 		carnet.setNvips(0);
@@ -149,7 +150,7 @@ public class NuevoPeregrinoController implements Initializable {
 			mostrarAlerta(AlertType.ERROR, "ERROR:", "debe introducir su nombre");
 			return false;
 		}
-		if (parada.isEmpty() || nacionalidad.equals(null)) {
+		if (parada.isEmpty() || parada == null) {
 			mostrarAlerta(AlertType.ERROR, "ERROR:", "debe seleccionar una parada");
 			return false;
 		}
@@ -161,7 +162,7 @@ public class NuevoPeregrinoController implements Initializable {
 			mostrarAlerta(AlertType.ERROR, "ERROR:", "formato de contrasena incorrecto");
 			return false;
 		}
-		if (nacionalidad.isEmpty() || nacionalidad.equals(null)) {
+		if (nacionalidad.isEmpty() || nacionalidad==null) {
 			mostrarAlerta(AlertType.ERROR, "ERROR:", "debe seleccionar una nacionalidad");
 			return false;
 		}

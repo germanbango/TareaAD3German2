@@ -6,8 +6,10 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Controller;
 
+import com.german.tarea3AD2024base.config.StageManager;
 import com.german.tarea3AD2024base.modelo.Carnet;
 import com.german.tarea3AD2024base.modelo.Estancia;
 import com.german.tarea3AD2024base.modelo.Parada;
@@ -19,6 +21,7 @@ import com.german.tarea3AD2024base.services.ParadaServicio;
 import com.german.tarea3AD2024base.services.PeregrinoParadaServicio;
 import com.german.tarea3AD2024base.services.PeregrinoServicio;
 import com.german.tarea3AD2024base.utiles.Sesion;
+import com.german.tarea3AD2024base.view.FxmlView;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -51,6 +54,10 @@ public class SellarAlojarseController implements Initializable {
 	
 	@Autowired
 	private PeregrinoParadaServicio peregrinoParadaServicio;
+	
+	@Lazy
+	@Autowired
+	StageManager stageManager;
 	
 	Parada parada;
 
@@ -100,6 +107,11 @@ public class SellarAlojarseController implements Initializable {
 			peregrinoParadaServicio.guardar(peregrinoParada);
 			mostrarAlerta(AlertType.CONFIRMATION, "Visita guardada", "Se ha registrado la visita");
 		}
+	}
+	
+	@FXML
+	private void Cerrar() {
+		stageManager.switchScene(FxmlView.MENU_RESPONSABLE);
 	}
 	
 	private void mostrarAlerta(AlertType tipo, String titulo, String mensaje) {

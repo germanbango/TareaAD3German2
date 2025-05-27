@@ -26,7 +26,7 @@ public enum FxmlView {
 			return "/fxml/Login.fxml";
 		}
 	},
-	MENU_RESPONSABLE{
+	MENU_RESPONSABLE {
 		@Override
 		public String getTitle() {
 			return getStringFromResourceBundle("menuResponsable.title");
@@ -37,7 +37,7 @@ public enum FxmlView {
 			return "/fxml/MenuResponsable.fxml";
 		}
 	},
-	REGISTRAR_PEREGRINO{
+	REGISTRAR_PEREGRINO {
 		@Override
 		public String getTitle() {
 			return getStringFromResourceBundle("nuevoPeregrino.title");
@@ -47,9 +47,9 @@ public enum FxmlView {
 		public String getFxmlFile() {
 			return "/fxml/NuevoPeregrino.fxml";
 		}
-		
+
 	},
-	MENU_PEREGRINO{
+	MENU_PEREGRINO {
 		@Override
 		public String getTitle() {
 			return getStringFromResourceBundle("menuPeregrino.title");
@@ -60,7 +60,7 @@ public enum FxmlView {
 			return "/fxml/MenuPeregrino.fxml";
 		}
 	},
-	SELLAR_ALOJARSE{
+	SELLAR_ALOJARSE {
 		@Override
 		public String getTitle() {
 			return getStringFromResourceBundle("sellarAlojarse.title");
@@ -69,6 +69,17 @@ public enum FxmlView {
 		@Override
 		public String getFxmlFile() {
 			return "/fxml/SellarAlojar.fxml";
+		}
+	},
+	EXPORTAR_ALOJARSE {
+		@Override
+		public String getTitle() {
+			return getStringFromResourceBundle("exportarParadas.title");
+		}
+
+		@Override
+		public String getFxmlFile() {
+			return "/fxml/ExportarParadas.fxml";
 		}
 	};
 
@@ -79,6 +90,5 @@ public enum FxmlView {
 	String getStringFromResourceBundle(String key) {
 		return ResourceBundle.getBundle("Bundle").getString(key);
 	}
-	
-	
+
 }
