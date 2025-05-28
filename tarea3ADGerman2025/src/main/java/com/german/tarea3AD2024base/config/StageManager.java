@@ -22,6 +22,7 @@ public class StageManager {
     private static final Logger LOG = getLogger(StageManager.class);
     private final Stage primaryStage;
     private final SpringFXMLLoader springFXMLLoader;
+    private Stage currentModalStage;
 
     public StageManager(SpringFXMLLoader springFXMLLoader, Stage stage) {
         this.springFXMLLoader = springFXMLLoader;
@@ -42,6 +43,7 @@ public class StageManager {
         primaryStage.setScene(scene);
         primaryStage.sizeToScene();
         primaryStage.centerOnScreen();
+        primaryStage.setResizable(false); // ← Esto evita que la principal sea redimensionable
         
         try {
             primaryStage.show();
@@ -49,6 +51,7 @@ public class StageManager {
             logAndExit ("Unable to show scene for title" + title,  exception);
         }
     }
+
     
     private Scene prepareScene(Parent rootnode){
         Scene scene = primaryStage.getScene();
@@ -87,24 +90,34 @@ public class StageManager {
         showModal(rootNode, view.getTitle());
     }
 
-    /**
-     * Internal method to show modal with root node and title
-     */
     private void showModal(Parent rootNode, String title) {
         try {
-            Stage modalStage = new Stage();
+            currentModalStage = new Stage();
+            Stage modalStage = currentModalStage;
             modalStage.initModality(Modality.APPLICATION_MODAL);
-            modalStage.initOwner(primaryStage); // Usa el primaryStage como owner
+            modalStage.initOwner(primaryStage);
             modalStage.setTitle(title);
-            
+            modalStage.setResizable(false);
+
             Scene scene = new Scene(rootNode);
             modalStage.setScene(scene);
             modalStage.sizeToScene();
             modalStage.centerOnScreen();
-            
+
             modalStage.showAndWait();
         } catch (Exception exception) {
             logAndExit("Unable to show modal for title: " + title, exception);
         }
     }
+
+    public void closeModal() {
+        if (currentModalStage != null) {
+            currentModalStage.close();
+            currentModalStage = null;
+        } else {
+            LOG.warn("No modal stage to close.");
+        }
+    }
+
+    
 }

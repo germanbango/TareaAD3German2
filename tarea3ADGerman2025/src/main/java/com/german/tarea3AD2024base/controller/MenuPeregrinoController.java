@@ -19,10 +19,12 @@ import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Controller;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
+import com.german.tarea3AD2024base.config.StageManager;
 import com.german.tarea3AD2024base.modelo.Carnet;
 import com.german.tarea3AD2024base.modelo.Estancia;
 import com.german.tarea3AD2024base.modelo.Parada;
@@ -32,6 +34,7 @@ import com.german.tarea3AD2024base.services.EstanciaServicio;
 import com.german.tarea3AD2024base.services.ParadaServicio;
 import com.german.tarea3AD2024base.services.PeregrinoServicio;
 import com.german.tarea3AD2024base.utiles.Sesion;
+import com.german.tarea3AD2024base.view.FxmlView;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -54,6 +57,8 @@ import net.sf.jasperreports.view.JasperViewer;
 		private Menu menuGestion;
 		@FXML
 		private MenuItem menuitemExportarCarnet;
+		@FXML
+		private MenuItem menuItemModificarPeregrino;
 	
 		@Autowired
 		private PeregrinoServicio peregrinoServicio = new PeregrinoServicio();
@@ -66,12 +71,23 @@ import net.sf.jasperreports.view.JasperViewer;
 		@Autowired
 		private DataSource dt;
 		
+		@Lazy
+		@Autowired
+		StageManager stageManger;
+		
 		
 		
 		@Override
 		public void initialize(URL location, ResourceBundle resources) {
 			menuitemExportarCarnet.setAccelerator(KeyCombination.keyCombination("Ctrl+E"));
+			menuItemModificarPeregrino.setAccelerator(KeyCombination.keyCombination("Ctrl+M"));
+			
 	
+		}
+		
+		@FXML
+		public void abrirModificarPeregrino() {
+			stageManger.showModal(FxmlView.MODIFICAR_PEREGRINO);
 		}
 		
 		@FXML

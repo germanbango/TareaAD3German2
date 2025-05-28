@@ -81,6 +81,17 @@ public enum FxmlView {
 		public String getFxmlFile() {
 			return "/fxml/ExportarParadas.fxml";
 		}
+	},
+	MODIFICAR_PEREGRINO{
+		@Override
+		public String getTitle() {
+			return getStringFromResourceBundle("modificarPeregrino.title");
+		}
+
+		@Override
+		public String getFxmlFile() {
+			return "/fxml/ModificarPeregrino.fxml";
+		}
 	};
 
 	public abstract String getTitle();

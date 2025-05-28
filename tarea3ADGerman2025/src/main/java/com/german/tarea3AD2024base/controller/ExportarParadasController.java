@@ -118,7 +118,7 @@ public class ExportarParadasController {
 	
 	@FXML
 	public void salir() {
-		stageManager.switchScene(FxmlView.MENU_RESPONSABLE);
+		stageManager.closeModal();
 	}
 	
 	private void mostrarAlerta(AlertType tipo, String titulo, String mensaje) {

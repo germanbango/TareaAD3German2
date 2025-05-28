@@ -5,13 +5,14 @@
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" fx:controller="com.german.tarea3AD2024base.controller.MenuPeregrinoController" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.german.tarea3AD2024base.controller.MenuPeregrinoController">
    <children>
       <MenuBar fx:id="menubarPeregrino">
         <menus>
           <Menu fx:id="menuGestion" mnemonicParsing="false" text="Gestion">
             <items>
-              <MenuItem fx:id="menuitemExportarCarnet" onAction="#generarInformeYXml" mnemonicParsing="false" text=" Exportar carnet" />
+              <MenuItem fx:id="menuitemExportarCarnet" mnemonicParsing="false" onAction="#generarInformeYXml" text=" Exportar carnet" />
+                  <MenuItem fx:id="menuItemModificarPeregrino" onAction="#abrirModificarPeregrino" mnemonicParsing="false" text="Unspecified Action" />
             </items>
           </Menu>
           <Menu mnemonicParsing="false" text="Ayuda">

@@ -51,14 +51,14 @@ public class SellarAlojarseController implements Initializable {
 
 	@Autowired
 	private EstanciaServicio estanciaServicio;
-	
+
 	@Autowired
 	private PeregrinoParadaServicio peregrinoParadaServicio;
-	
+
 	@Lazy
 	@Autowired
 	StageManager stageManager;
-	
+
 	Parada parada;
 
 	private List<String> peregrinos;
@@ -90,30 +90,30 @@ public class SellarAlojarseController implements Initializable {
 			carnetServicio.actualizar(carnet);
 			peregrinoParadaServicio.guardar(peregrinoParada);
 			mostrarAlerta(AlertType.CONFIRMATION, "Estancia guardada", "La estancia gaurdada es normal");
-		}else if(!(rdbEstanciaNormal.isSelected()) && rdbEstanciaVIP.isSelected()) {
+		} else if (!(rdbEstanciaNormal.isSelected()) && rdbEstanciaVIP.isSelected()) {
 			estancia.setFecha(LocalDateTime.now());
 			estancia.setVip(true);
 			estancia.setParada(parada);
 			estancia.setPeregrino(peregrino);
 			estanciaServicio.guardar(estancia);
-			carnet.setNvips(carnet.getNvips()+1);
+			carnet.setNvips(carnet.getNvips() + 1);
 			carnetServicio.actualizar(carnet);
 			peregrinoParadaServicio.guardar(peregrinoParada);
 			mostrarAlerta(AlertType.CONFIRMATION, "Estancia guardada", "La estancia gaurdada es VIP");
-		}else if(rdbEstanciaNormal.isSelected() && rdbEstanciaVIP.isSelected()) {
+		} else if (rdbEstanciaNormal.isSelected() && rdbEstanciaVIP.isSelected()) {
 			mostrarAlerta(AlertType.ERROR, "Error:", "Solo puedes Seleccionar una opcion");
-		}else {
+		} else {
 			carnetServicio.actualizar(carnet);
 			peregrinoParadaServicio.guardar(peregrinoParada);
 			mostrarAlerta(AlertType.CONFIRMATION, "Visita guardada", "Se ha registrado la visita");
 		}
 	}
-	
+
 	@FXML
-	private void Cerrar() {
-		stageManager.switchScene(FxmlView.MENU_RESPONSABLE);
+	public void salir() {
+		stageManager.closeModal();
 	}
-	
+
 	private void mostrarAlerta(AlertType tipo, String titulo, String mensaje) {
 		Alert alert = new Alert(tipo);
 		alert.setTitle(titulo);
