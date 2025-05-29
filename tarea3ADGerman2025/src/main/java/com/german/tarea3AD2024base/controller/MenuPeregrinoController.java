@@ -59,6 +59,8 @@ import net.sf.jasperreports.view.JasperViewer;
 		private MenuItem menuitemExportarCarnet;
 		@FXML
 		private MenuItem menuItemModificarPeregrino;
+		@FXML
+		private MenuItem itemMenuSalir;
 	
 		@Autowired
 		private PeregrinoServicio peregrinoServicio = new PeregrinoServicio();
@@ -81,6 +83,7 @@ import net.sf.jasperreports.view.JasperViewer;
 		public void initialize(URL location, ResourceBundle resources) {
 			menuitemExportarCarnet.setAccelerator(KeyCombination.keyCombination("Ctrl+E"));
 			menuItemModificarPeregrino.setAccelerator(KeyCombination.keyCombination("Ctrl+M"));
+			itemMenuSalir.setAccelerator(KeyCombination.keyCombination("Ctrl+S"));
 			
 	
 		}
@@ -118,22 +121,18 @@ import net.sf.jasperreports.view.JasperViewer;
 				Element carnetE = doc.createElement("carnet");
 				doc.appendChild(carnetE);
 	
-				// ID
 				Element id = doc.createElement("id");
 				id.appendChild(doc.createTextNode(String.valueOf(p.getId())));
 				carnetE.appendChild(id);
 	
-				// Fecha expediciÃ³n
 				Element fechaExp = doc.createElement("fechaexp");
 				fechaExp.appendChild(doc.createTextNode(carnet.getFechaexp().toString()));
 				carnetE.appendChild(fechaExp);
 	
-				// Parada donde se expidiÃ³
 				Element expedidoEn = doc.createElement("expedidoen");
 				expedidoEn.appendChild(doc.createTextNode(paradaInicial));
 				carnetE.appendChild(expedidoEn);
 	
-				// Datos del peregrino
 				Element peregrino = doc.createElement("peregrino");
 	
 				Element nombre = doc.createElement("nombre");
@@ -146,17 +145,14 @@ import net.sf.jasperreports.view.JasperViewer;
 	
 				carnetE.appendChild(peregrino);
 	
-				// Fecha actual
 				Element hoy = doc.createElement("hoy");
 				hoy.appendChild(doc.createTextNode(LocalDate.now().toString()));
 				carnetE.appendChild(hoy);
 	
-				// Distancia total
 				Element distanciaTotal = doc.createElement("distanciatotal");
 				distanciaTotal.appendChild(doc.createTextNode(String.valueOf(carnet.getDistancia())));
 				carnetE.appendChild(distanciaTotal);
 	
-				// Paradas recorridas
 				Element paradasElem = doc.createElement("paradas");
 				int orden = 1;
 				for (Parada parada : paradas) {
@@ -178,7 +174,6 @@ import net.sf.jasperreports.view.JasperViewer;
 				}
 				carnetE.appendChild(paradasElem);
 	
-				// Estancias
 				Element estanciasElem = doc.createElement("estancias");
 				for (Estancia e : estancias) {
 					Element estanciaElem = doc.createElement("estancia");
@@ -197,20 +192,18 @@ import net.sf.jasperreports.view.JasperViewer;
 	
 					if (e.isVip()) {
 						Element vip = doc.createElement("vip");
-						estanciaElem.appendChild(vip); // etiqueta vacÃ­a solo si es VIP
+						estanciaElem.appendChild(vip); 
 					}
 	
 					estanciasElem.appendChild(estanciaElem);
 				}
 				carnetE.appendChild(estanciasElem);
-	
-				// Crear carpeta si no existe
-				File carpeta = new File("ficheros");
+					File carpeta = new File("ficheros");
 				if (!carpeta.exists()) {
 					carpeta.mkdir();
 				}
 	
-				// Guardar en archivo XML bonito
+
 				File file = new File("ficheros/carnet_" + p.getNombre() + ".xml");
 				Transformer transformer = TransformerFactory.newInstance().newTransformer();
 				transformer.setOutputProperty(OutputKeys.INDENT, "yes");
@@ -232,19 +225,14 @@ import net.sf.jasperreports.view.JasperViewer;
 		}
 		public void mostrarInformeCarnet() {
 		    try {
-		        // Ruta al archivo .jasper compilado (debe estar en /resources/reports/)
 		        String reportPath = "src/main/resources/reports/DatosCarnet.jasper";
 
-		        // Parámetros para el informe
 		        Map<String, Object> parameters = new HashMap<>();
 		        parameters.put("usuario_id", Sesion.getId());
 
-		        // Obtener la conexión del DataSource gestionado por Spring
 		        try (Connection conn = dt.getConnection()) {
-		            // Llenar el informe
 		            JasperPrint jasperPrint = JasperFillManager.fillReport(reportPath, parameters, conn);
 
-		            // Mostrarlo con JasperViewer
 		            JasperViewer viewer = new JasperViewer(jasperPrint, false);
 		            viewer.setTitle("Informe del Carnet");
 		            viewer.setVisible(true);
@@ -256,6 +244,10 @@ import net.sf.jasperreports.view.JasperViewer;
 		    }
 		}
 
+		@FXML
+		public void cerrarSesion() {
+			stageManger.switchScene(FxmlView.LOGIN);
+		}
 		
 		private void mostrarAlerta(AlertType tipo, String titulo, String mensaje) {
 			Alert alert = new Alert(tipo);

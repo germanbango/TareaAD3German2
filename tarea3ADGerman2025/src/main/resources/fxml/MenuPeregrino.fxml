@@ -12,7 +12,7 @@
           <Menu fx:id="menuGestion" mnemonicParsing="false" text="Gestion">
             <items>
               <MenuItem fx:id="menuitemExportarCarnet" mnemonicParsing="false" onAction="#generarInformeYXml" text=" Exportar carnet" />
-                  <MenuItem fx:id="menuItemModificarPeregrino" onAction="#abrirModificarPeregrino" mnemonicParsing="false" text="Unspecified Action" />
+                  <MenuItem fx:id="menuItemModificarPeregrino" mnemonicParsing="false" onAction="#abrirModificarPeregrino" text="Unspecified Action" />
             </items>
           </Menu>
           <Menu mnemonicParsing="false" text="Ayuda">
@@ -22,7 +22,7 @@
           </Menu>
           <Menu mnemonicParsing="false" text="Salir">
             <items>
-              <MenuItem mnemonicParsing="false" text="Cerrar Sesion" />
+              <MenuItem fx:id="itemMenuSalir" mnemonicParsing="false" text="Cerrar Sesion" onAction="#cerrarSesion" />
             </items>
           </Menu>
         </menus>

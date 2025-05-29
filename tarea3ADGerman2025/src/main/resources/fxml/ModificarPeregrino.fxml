@@ -102,12 +102,12 @@
          <children>
             <VBox prefHeight="50.0" prefWidth="221.0">
                <children>
-                  <Button mnemonicParsing="false" prefHeight="34.0" prefWidth="87.0" style="-fx-background-color: #3cbc53; -fx-font-weight: bold;" text="Guardar" textFill="WHITE" />
+                  <Button mnemonicParsing="false" prefHeight="34.0" prefWidth="87.0" style="-fx-background-color: #3cbc53; -fx-font-weight: bold;" text="Guardar" onAction="#modificarDatos" textFill="WHITE" />
                </children>
             </VBox>
             <VBox alignment="TOP_RIGHT" prefHeight="48.0" prefWidth="247.0">
                <children>
-                  <Button mnemonicParsing="false" prefHeight="34.0" prefWidth="87.0" style="-fx-background-color: #FF6666; -fx-font-weight: bold;" text="Cancelar" textFill="WHITE" />
+                  <Button mnemonicParsing="false" prefHeight="34.0" prefWidth="87.0" style="-fx-background-color: #FF6666; -fx-font-weight: bold;" text="Cancelar" onAction="#cerrarVentana" textFill="WHITE" />
                </children>
             </VBox>
          </children>

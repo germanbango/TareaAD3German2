@@ -28,6 +28,8 @@ public class MenuResponsableController implements Initializable {
 	private MenuItem menuItemSellar;
 	@FXML
 	private MenuItem menuItemExportar;
+	@FXML
+	private MenuItem itemMenuSalir;
 	
 	@Lazy
 	@Autowired
@@ -35,8 +37,9 @@ public class MenuResponsableController implements Initializable {
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		menuItemSellar.setAccelerator(KeyCombination.keyCombination("Ctrl+S"));
+		menuItemSellar.setAccelerator(KeyCombination.keyCombination("Ctrl+A"));
 		menuItemExportar.setAccelerator(KeyCombination.keyCombination("Ctrl+E"));
+		itemMenuSalir.setAccelerator(KeyCombination.keyCombination("Ctrl+S"));
 
 	}
 	
@@ -48,6 +51,11 @@ public class MenuResponsableController implements Initializable {
 	@FXML
 	private void abirExportarParadas() {
 		stageManager.showModal(FxmlView.EXPORTAR_ALOJARSE);
+	}
+	
+	@FXML
+	public void cerrarSesion() {
+		stageManager.switchScene(FxmlView.LOGIN);
 	}
 
 }
