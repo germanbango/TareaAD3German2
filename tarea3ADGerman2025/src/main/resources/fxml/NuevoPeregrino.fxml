@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="500.0" prefWidth="460.0" stylesheets="@../styles/Styles.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.german.tarea3AD2024base.controller.NuevoPeregrinoController">
+<BorderPane prefHeight="381.0" prefWidth="594.0" stylesheets="@../styles/Styles.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.german.tarea3AD2024base.controller.NuevoPeregrinoController">
    <top>
       <Label styleClass="header-label" text="Registro de Nuevo Peregrino">
          <font>
@@ -33,7 +33,7 @@
                         <Font size="15.0" />
                      </font>
                   </Label>
-                  <ComboBox fx:id="cmbParadas" prefHeight="30.0" prefWidth="222.0" promptText="Seleccione parada inicial" styleClass="combo-box">
+                  <ComboBox fx:id="cmbParadas" prefHeight="30.0" prefWidth="228.0" promptText="Seleccione parada inicial" styleClass="combo-box">
                      <effect>
                         <DropShadow blurType="ONE_PASS_BOX" color="#1965d0" />
                      </effect>
@@ -63,7 +63,7 @@
                         <Font size="15.0" />
                      </font>
                   </Label>
-                  <ComboBox fx:id="cmbNacionalidad" prefHeight="31.0" prefWidth="229.0" promptText="Seleccione parada inicial" styleClass="combo-box">
+                  <ComboBox fx:id="cmbNacionalidad" prefHeight="31.0" prefWidth="228.0" promptText="Seleccione parada inicial" styleClass="combo-box">
                      <effect>
                         <DropShadow blurType="ONE_PASS_BOX" color="#1965d0" />
                      </effect>
@@ -77,7 +77,7 @@
                         <Font size="15.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="txtUsuario" prefHeight="32.0" prefWidth="223.0" promptText="Introduzca su usuario(sin espacios)" styleClass="text-field">
+                  <TextField fx:id="txtUsuario" prefHeight="25.0" prefWidth="228.0" promptText="Introduzca su usuario(sin espacios)" styleClass="text-field">
                      <effect>
                         <DropShadow blurType="ONE_PASS_BOX" color="#1965d0" />
                      </effect>
@@ -91,13 +91,13 @@
                         <Font size="15.0" />
                      </font>
                   </Label>
-                  <PasswordField fx:id="txtContrasena" prefHeight="32.0" prefWidth="220.0" promptText="Introduzca la contrasena(sin espacios)" />
+                  <PasswordField fx:id="txtContrasena" prefHeight="32.0" prefWidth="228.0" promptText="Introduzca la contrasena(sin espacios)" />
                </children>
             </HBox>
             
-            <HBox alignment="CENTER" prefHeight="25.0" prefWidth="380.0" spacing="20.0">
+            <HBox prefHeight="25.0" prefWidth="380.0" spacing="20.0">
                <children>
-                  <VBox alignment="BOTTOM_LEFT" prefHeight="63.0" prefWidth="274.0">
+                  <VBox alignment="BOTTOM_LEFT" prefHeight="31.0" prefWidth="267.0">
                      <children>
                         <Button mnemonicParsing="false" onAction="#salir" styleClass="btnCancel" text="Salir">
                            <font>
@@ -111,7 +111,7 @@
                   </VBox>
                   <VBox alignment="BOTTOM_RIGHT" prefHeight="200.0" prefWidth="100.0">
                      <children>
-                        <Button alignment="BOTTOM_LEFT" mnemonicParsing="false" styleClass="btnGreen" onAction="#GuardarPeregrino" text="Registrar">
+                        <Button alignment="BOTTOM_LEFT" mnemonicParsing="false" onAction="#GuardarPeregrino" styleClass="btnGreen" text="Registrar">
                            <font>
                               <Font size="15.0" />
                            </font>
@@ -128,7 +128,7 @@
             </HBox>
          </children>
          <padding>
-            <Insets bottom="40.0" left="40.0" right="40.0" top="40.0" />
+            <Insets bottom="40.0" left="80.0" right="40.0" top="40.0" />
          </padding>
       </VBox>
    </center>

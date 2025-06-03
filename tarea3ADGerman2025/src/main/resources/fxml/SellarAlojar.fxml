@@ -5,11 +5,13 @@
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="CENTER" maxHeight="-Infinity" fx:controller="com.german.tarea3AD2024base.controller.SellarAlojarseController" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="354.0" prefWidth="479.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="381.0" prefWidth="594.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.german.tarea3AD2024base.controller.SellarAlojarseController">
    <children>
       <HBox alignment="CENTER" layoutX="10.0" layoutY="85.0" prefHeight="96.0" prefWidth="479.0">
          <children>
@@ -66,25 +68,38 @@
                   <Insets left="15.0" />
                </HBox.margin>
             </VBox>
-            <VBox prefHeight="202.0" prefWidth="298.0" />
+            <VBox prefHeight="202.0" prefWidth="298.0">
+               <children>
+                  <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/sello.png" />
+                     </image>
+                     <VBox.margin>
+                        <Insets left="30.0" />
+                     </VBox.margin>
+                  </ImageView>
+               </children></VBox>
          </children>
+         <VBox.margin>
+            <Insets left="50.0" />
+         </VBox.margin>
       </HBox>
       <HBox prefHeight="86.0" prefWidth="570.0">
          <children>
             <VBox prefHeight="95.0" prefWidth="297.0">
                <children>
-                  <Button mnemonicParsing="false" prefHeight="35.0" prefWidth="87.0" onAction="#sellarAlojarse" text="Confirmar">
+                  <Button mnemonicParsing="false" onAction="#sellarAlojarse" prefHeight="35.0" prefWidth="87.0" style="-fx-background-color: #3cbc53; -fx-font-weight: bold;" text="Confirmar" textFill="WHITE">
                      <VBox.margin>
-                        <Insets top="15.0" />
+                        <Insets left="40.0" top="15.0" />
                      </VBox.margin>
                   </Button>
                </children>
             </VBox>
             <VBox alignment="TOP_RIGHT" prefHeight="95.0" prefWidth="530.0">
                <children>
-                  <Button mnemonicParsing="false" prefHeight="37.0" prefWidth="74.0"  onAction="#Cerrar" text="Salir">
+                  <Button mnemonicParsing="false" onAction="#Cerrar" prefHeight="37.0" prefWidth="74.0" style="-fx-background-color: #FF6666; -fx-font-weight: bold;" text="Salir" textFill="WHITE">
                      <VBox.margin>
-                        <Insets right="30.0" top="15.0" />
+                        <Insets right="50.0" top="15.0" />
                      </VBox.margin>
                   </Button>
                </children>

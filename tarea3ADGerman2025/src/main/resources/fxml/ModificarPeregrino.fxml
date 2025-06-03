@@ -13,9 +13,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="TOP_CENTER" prefHeight="338.0" prefWidth="499.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.german.tarea3AD2024base.controller.ModificarPeregrinoController">
+<VBox alignment="TOP_CENTER" prefHeight="381.0" prefWidth="499.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.german.tarea3AD2024base.controller.ModificarPeregrinoController">
    <children>
-      <MenuBar>
+      <MenuBar prefHeight="18.0" prefWidth="499.0">
         <menus>
           <Menu mnemonicParsing="false" text="Ayuda">
             <items>
@@ -32,7 +32,7 @@
             <Insets top="25.0" />
          </VBox.margin>
       </Label>
-      <HBox prefHeight="136.0" prefWidth="378.0">
+      <HBox prefHeight="142.0" prefWidth="439.0">
          <children>
             <VBox prefHeight="132.0" prefWidth="246.0">
                <children>
@@ -98,21 +98,21 @@
             <Insets left="30.0" right="30.0" top="30.0" />
          </VBox.margin>
       </HBox>
-      <HBox prefHeight="46.0" prefWidth="439.0">
+      <HBox prefHeight="59.0" prefWidth="439.0">
          <children>
             <VBox prefHeight="50.0" prefWidth="221.0">
                <children>
-                  <Button mnemonicParsing="false" prefHeight="34.0" prefWidth="87.0" style="-fx-background-color: #3cbc53; -fx-font-weight: bold;" text="Guardar" onAction="#modificarDatos" textFill="WHITE" />
+                  <Button mnemonicParsing="false" onAction="#modificarDatos" prefHeight="34.0" prefWidth="87.0" style="-fx-background-color: #3cbc53; -fx-font-weight: bold;" text="Guardar" textFill="WHITE" />
                </children>
             </VBox>
             <VBox alignment="TOP_RIGHT" prefHeight="48.0" prefWidth="247.0">
                <children>
-                  <Button mnemonicParsing="false" prefHeight="34.0" prefWidth="87.0" style="-fx-background-color: #FF6666; -fx-font-weight: bold;" text="Cancelar" onAction="#cerrarVentana" textFill="WHITE" />
+                  <Button mnemonicParsing="false" onAction="#cerrarVentana" prefHeight="34.0" prefWidth="87.0" style="-fx-background-color: #FF6666; -fx-font-weight: bold;" text="Cancelar" textFill="WHITE" />
                </children>
             </VBox>
          </children>
          <VBox.margin>
-            <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
+            <Insets bottom="15.0" left="30.0" right="30.0" top="50.0" />
          </VBox.margin>
       </HBox>
    </children>

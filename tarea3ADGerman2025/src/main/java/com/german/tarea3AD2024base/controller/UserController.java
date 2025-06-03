@@ -5,6 +5,11 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 import javafx.beans.property.SimpleObjectProperty;
+import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Controller;
@@ -16,18 +21,6 @@ import com.german.tarea3AD2024base.modelo.User;
 import com.german.tarea3AD2024base.services.ParadaServicio;
 import com.german.tarea3AD2024base.services.UserService;
 import com.german.tarea3AD2024base.view.FxmlView;
-
-import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
-import javafx.scene.control.cell.PropertyValueFactory;
 
 @Controller
 public class UserController implements Initializable {
@@ -41,23 +34,34 @@ public class UserController implements Initializable {
     @FXML private PasswordField txtResponsableContrasena;
     @FXML private Button reset;
     @FXML private Button saveUser;
-    
+
     @FXML private TableView<Parada> userTable;
     @FXML private TableColumn<Parada, Long> colParadId;
     @FXML private TableColumn<Parada, String> colParadaNombre;
     @FXML private TableColumn<Parada, Character> colParadaRegion;
     @FXML private TableColumn<Parada, String> colResponable;
-    @FXML private TableColumn<Parada, Long> colResponsableId;
-    @FXML private TableColumn<Parada, Boolean> colEdit;
 
-    @Lazy @Autowired 
-    private StageManager stageManager;
-    
-    @Autowired 
-    private UserService userService;
-    
-    @Autowired 
-    private ParadaServicio paradaServicio;
+    @Lazy @Autowired private StageManager stageManager;
+    @Autowired private UserService userService;
+    @Autowired private ParadaServicio paradaServicio;
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        configurarColumnasTabla();
+        cargarParadas();
+    }
+
+    private void configurarColumnasTabla() {
+        colParadId.setCellValueFactory(new PropertyValueFactory<>("id"));
+        colParadaNombre.setCellValueFactory(new PropertyValueFactory<>("nombre"));
+        colParadaRegion.setCellValueFactory(new PropertyValueFactory<>("region"));
+        colResponable.setCellValueFactory(new PropertyValueFactory<>("responsable"));
+    }
+
+    private void cargarParadas() {
+        List<Parada> paradas = paradaServicio.encontrarTodos();
+        userTable.getItems().setAll(paradas);
+    }
 
     @FXML
     private void logout() throws Exception {
@@ -71,18 +75,17 @@ public class UserController implements Initializable {
 
     @FXML
     private void saveUser() {
-        if(validarCampos()) {
+        if (validarCampos()) {
             try {
                 User responsable = crearUsuarioResponsable();
-                userService.save(responsable); 
+                userService.save(responsable);
                 Parada nuevaParada = crearParada(responsable);
                 paradaServicio.guardar(nuevaParada);
-
-                mostrarAlerta(AlertType.INFORMATION, "Éxito", "Parada registrada correctamente");
+                mostrarAlerta(Alert.AlertType.INFORMATION, "Éxito", "Parada registrada correctamente");
                 limpiarCampos();
                 cargarParadas();
             } catch (Exception e) {
-                mostrarAlerta(AlertType.ERROR, "Error", "Error al registrar parada: " + e.getMessage());
+                mostrarAlerta(Alert.AlertType.ERROR, "Error", "Error al registrar parada: " + e.getMessage());
                 e.printStackTrace();
             }
         }
@@ -112,55 +115,43 @@ public class UserController implements Initializable {
         String contrasena = txtResponsableContrasena.getText().trim();
         String nombreResponsable = txtResponsable.getText().trim();
 
-        if(nombreParada.isEmpty()) {
-            mostrarAlerta(AlertType.WARNING, "Validación", "Ingrese el nombre de la parada");
+        if (nombreParada.isEmpty()) {
+            mostrarAlerta(Alert.AlertType.WARNING, "Validación", "Ingrese el nombre de la parada");
             return false;
         }
 
-        if(regionInput.length() != 1 || !Character.isLetter(regionInput.charAt(0))) {
-            mostrarAlerta(AlertType.WARNING, "Validación", "La región debe ser una sola letra (A-Z)");
+        if (regionInput.length() != 1 || !Character.isLetter(regionInput.charAt(0))) {
+            mostrarAlerta(Alert.AlertType.WARNING, "Validación", "La región debe ser una sola letra (A-Z)");
             return false;
         }
+
         char region = Character.toUpperCase(regionInput.charAt(0));
-
-        if(paradaServicio.existeParadaConNombreYRegion(nombreParada, region)) {
-            mostrarAlerta(AlertType.WARNING, "Validación", "Ya existe una parada con este nombre en la región " + region);
+        if (paradaServicio.existeParadaConNombreYRegion(nombreParada, region)) {
+            mostrarAlerta(Alert.AlertType.WARNING, "Validación", "Ya existe una parada con este nombre en la región " + region);
             return false;
         }
 
-        if(usuario.isEmpty()) {
-            mostrarAlerta(AlertType.WARNING, "Validación", "Ingrese el usuario del responsable");
-            return false;
-        }
-        if(usuario.contains(" ")) {
-            mostrarAlerta(AlertType.WARNING, "Validación", "El usuario no puede contener espacios");
-            return false;
-        }
-        if(userService.existeUsuarioConEmail(usuario)) {
-            mostrarAlerta(AlertType.WARNING, "Validación", "El usuario ya está registrado");
+        if (usuario.isEmpty() || usuario.contains(" ")) {
+            mostrarAlerta(Alert.AlertType.WARNING, "Validación", "Ingrese un usuario válido (sin espacios)");
             return false;
         }
 
-        if(contrasena.isEmpty()) {
-            mostrarAlerta(AlertType.WARNING, "Validación", "Ingrese la contraseña");
-            return false;
-        }
-        if(contrasena.contains(" ")) {
-            mostrarAlerta(AlertType.WARNING, "Validación", "La contraseña no puede contener espacios");
+        if (userService.existeUsuarioConEmail(usuario)) {
+            mostrarAlerta(Alert.AlertType.WARNING, "Validación", "El usuario ya está registrado");
             return false;
         }
 
-        if(nombreResponsable.isEmpty()) {
-            mostrarAlerta(AlertType.WARNING, "Validación", "Ingrese el nombre del responsable");
+        if (contrasena.isEmpty() || contrasena.contains(" ")) {
+            mostrarAlerta(Alert.AlertType.WARNING, "Validación", "Ingrese una contraseña válida (sin espacios)");
+            return false;
+        }
+
+        if (nombreResponsable.isEmpty()) {
+            mostrarAlerta(Alert.AlertType.WARNING, "Validación", "Ingrese el nombre del responsable");
             return false;
         }
 
         return true;
-    }
-
-    private void cargarParadas() {
-        List<Parada> paradas = paradaServicio.encontrarTodos();
-        userTable.getItems().setAll(paradas);
     }
 
     private void limpiarCampos() {
@@ -171,32 +162,11 @@ public class UserController implements Initializable {
         txtResponsableContrasena.clear();
     }
 
-    private void mostrarAlerta(AlertType tipo, String titulo, String mensaje) {
+    private void mostrarAlerta(Alert.AlertType tipo, String titulo, String mensaje) {
         Alert alert = new Alert(tipo);
         alert.setTitle(titulo);
         alert.setHeaderText(null);
         alert.setContentText(mensaje);
         alert.showAndWait();
-    }
-
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        configurarColumnasTabla();
-        cargarParadas();
-    }
-
-    private void configurarColumnasTabla() {
-        colParadId.setCellValueFactory(new PropertyValueFactory<>("id"));
-        colParadaNombre.setCellValueFactory(new PropertyValueFactory<>("nombre"));
-        colParadaRegion.setCellValueFactory(new PropertyValueFactory<>("region"));
-        colResponable.setCellValueFactory(new PropertyValueFactory<>("responsable"));
-
-        colResponsableId.setCellValueFactory(cellData -> {
-            Parada parada = cellData.getValue();
-            if (parada != null && parada.getUsuario() != null) {
-                return new SimpleObjectProperty<>(parada.getUsuario().getId());
-            }
-            return new SimpleObjectProperty<>(null);
-        });
     }
 }

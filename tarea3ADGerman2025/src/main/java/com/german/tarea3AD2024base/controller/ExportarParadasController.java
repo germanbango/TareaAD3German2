@@ -13,10 +13,10 @@ import org.springframework.stereotype.Controller;
 import com.german.tarea3AD2024base.config.StageManager;
 import com.german.tarea3AD2024base.modelo.Estancia;
 import com.german.tarea3AD2024base.modelo.Parada;
+import com.german.tarea3AD2024base.modelo.Peregrino;
 import com.german.tarea3AD2024base.services.EstanciaServicio;
 import com.german.tarea3AD2024base.services.ParadaServicio;
 import com.german.tarea3AD2024base.utiles.Sesion;
-import com.german.tarea3AD2024base.view.FxmlView;
 
 import javafx.beans.property.SimpleStringProperty;
 import javafx.fxml.FXML;
@@ -52,7 +52,8 @@ public class ExportarParadasController {
 	
 	private Parada parada = new Parada() ;
 	private List<Estancia> estancias = new ArrayList<Estancia>() ;
-	
+	private Peregrino peregrino;
+	 
 	@FXML
 	public void Exportar() {
 		if(validar()){
@@ -115,7 +116,7 @@ public class ExportarParadasController {
 		
 		return true;
 	}
-	
+	 
 	@FXML
 	public void salir() {
 		stageManager.closeModal();
